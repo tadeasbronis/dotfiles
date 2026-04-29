@@ -1,0 +1,6 @@
+# Websupport
+Host 37.9.169.175
+  ForwardAgent yes
+  IdentityFile ~/.ssh/id_ed25519
+  UseKeychain yes
+  AddKeysToAgent yes
