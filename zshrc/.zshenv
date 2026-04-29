@@ -1,0 +1,1 @@
+export ZDOTDITS="$HOME/.config/zshrc"
