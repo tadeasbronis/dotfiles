@@ -1,0 +1,2 @@
+[includeIf "gitdir:~/Git/github/tadeasbronis/"]
+path = ~/.config/git/config-personal
