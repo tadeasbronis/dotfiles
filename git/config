@@ -1,2 +1,5 @@
 [includeIf "gitdir:~/Git/github/tadeasbronis/"]
 path = ~/.config/git/config-personal
+
+[includeIf "gitdir:~/Git/team.blue/"]
+path = ~/.config/git/config-teamblue
