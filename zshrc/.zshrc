@@ -17,4 +17,4 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 
 # Websupport
-alias wss='ssh tadeas.bronis@37.9.169.175 -A'
+alias wss='TERM=xterm-256color ssh tadeas.bronis@37.9.169.175 -A'
