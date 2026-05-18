@@ -12,9 +12,11 @@ DRACULA_DISPLAY_NEW_LINE=1
 plugins=(
   git
   aliases
+  thefuck
 )
 
 source $ZSH/oh-my-zsh.sh
 
 # Websupport
 alias wss='TERM=xterm-256color ssh tadeas.bronis@37.9.169.175 -A'
+
