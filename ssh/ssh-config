@@ -1,6 +1,7 @@
 # General
 Host *
   IdentityFile ~/.ssh/id_ed25519
+  IdentityAgent ~/.bitwarden-ssh-agent.sock
 
 # Websupport
 Host 37.9.169.175

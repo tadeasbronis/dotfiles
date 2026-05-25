@@ -17,6 +17,9 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+# Bitwarden SSH agent
+export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
+
 # Websupport
 alias wss='TERM=xterm-256color ssh tadeas.bronis@37.9.169.175 -A'
 
