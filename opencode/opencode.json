@@ -2,4 +2,80 @@
   "$schema": "https://opencode.ai/config.json",
   "theme": "dracula",
   "autoupdate": true,
+  "disabled_providers": [
+    "opencode"
+  ],
+  "share": "disabled",
+  "provider": {
+    "litellm": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "BlueCode Platform",
+      "options": {
+        "baseURL": "https://inference.token-factory.ai.team.blue/v1/",
+        "apiKey": "{file:~/.config/opencode/.secrets/litellm-key}",
+        "headers": {
+          "x-bluecode-user": "tadeas.bronis@team.blue",
+          "x-token-factory-user": "tadeas.bronis@team.blue",
+          "x-client-app-id": "opencode"
+        }
+      },
+      "models": {
+        "Kimi-K2.6": {
+          "name": "Kimi K2.6",
+          "limit": {
+            "context": 249984,
+            "output": 24576
+          },
+          "cost": {
+            "input": 0.6,
+            "output": 2.8
+          }
+        },
+        "Qwen3.5-397B-A17B-AWQ": {
+          "name": "Qwen3.5 397b",
+          "limit": {
+            "context": 202000,
+            "output": 24576
+          },
+          "cost": {
+            "input": 0.3,
+            "output": 2.0
+          }
+        },
+        "Nemotron-3-Super-120B": {
+          "name": "Nemotron 3 Super 120b",
+          "limit": {
+            "context": 262144,
+            "output": 24576
+          },
+          "cost": {
+            "input": 0.25,
+            "output": 0.7
+          }
+        },
+        "Gemma-4-31B": {
+          "name": "Gemma4 31b",
+          "limit": {
+            "context": 131072,
+            "output": 24576
+          },
+          "cost": {
+            "input": 0.15,
+            "output": 0.4
+          }
+        },
+        "Qwen3.6-35B-A3B": {
+          "name": "Qwen3.6 35b",
+          "limit": {
+            "context": 40960,
+            "output": 8192
+          },
+          "cost": {
+            "input": 0.15,
+            "output": 0.6
+          }
+        }
+      }
+    }
+  }
 }
