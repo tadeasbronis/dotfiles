@@ -13,6 +13,7 @@ plugins=(
   aliases
   brew
   git
+  podman
   thefuck
 )
 
