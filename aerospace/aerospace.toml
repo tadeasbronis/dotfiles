@@ -72,12 +72,17 @@ on-mode-changed = []
 #     check-further-callbacks = true
 #     run = ['layout floating', 'move-node-to-workspace S']  # The callback itself
 
+# Floating apps
 [[on-window-detected]]
 if.app-name-regex-substring = 'finder'
 run = 'layout floating'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'self service'
 run = 'layout floating'
 
 # Assign VS Code to workspace I
