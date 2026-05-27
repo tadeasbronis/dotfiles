@@ -10,18 +10,26 @@ DRACULA_DISPLAY_NEW_LINE=1
 
 # plugins
 plugins=(
-  git
   aliases
+  brew
+  git
   thefuck
 )
+
+FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 source $ZSH/oh-my-zsh.sh
 
 # Bitwarden SSH agent
-export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
+# export SSH_AUTH_SOCK=~/.bitwarden-ssh-agent.sock
 
 # Websupport
 alias wss='TERM=xterm-256color ssh tadeas.bronis@37.9.169.175 -A'
 
 # Dotfiles
 alias dotfiles='code ~/Git/github/tadeasbronis/dotfiles'
+
+# Python
+alias python='python3.14'
+
+export PATH="$HOME/.local/bin:$PATH"
