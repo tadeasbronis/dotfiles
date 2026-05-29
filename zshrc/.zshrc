@@ -34,6 +34,7 @@ alias dotfiles='code ~/Git/github/tadeasbronis/dotfiles'
 alias python='python3.14'
 
 export PATH="$HOME/.local/bin:$PATH"
+export XDG_CONFIG_HOME="$HOME/.config"
 
 # opencode completion
 source <(opencode completion)
