@@ -8,8 +8,17 @@ return {{
     }},
     config = function()
         local builtin = require("telescope.builtin")
-        vim.keymap.set("n", "<C-p>", builtin.find_files, {})
-        vim.keymap.set("n", "<leader>fg", builtin.live_grep, {})
+        require("telescope").setup({
+            defaults = {
+                path_display = { "truncate" },
+            },
+            pickers = {
+                find_files = { cwd_only = true },
+                live_grep  = { cwd_only = true },
+            },
+        })
+        vim.keymap.set("n", "<leader>sf", builtin.find_files, {})
+        vim.keymap.set("n", "<leader>sg", builtin.live_grep, {})
     end
 }, {
     "nvim-telescope/telescope-ui-select.nvim",
