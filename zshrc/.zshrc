@@ -15,6 +15,8 @@ plugins=(
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
+export EDITOR="/opt/homebrew/bin/nvim"
+
 source $ZSH/oh-my-zsh.sh
 
 # Bitwarden SSH agent
@@ -24,7 +26,7 @@ source $ZSH/oh-my-zsh.sh
 alias wss='TERM=xterm-256color ssh tadeas.bronis@37.9.169.175 -A'
 
 # Dotfiles
-alias dotfiles='code ~/Git/github/tadeasbronis/dotfiles'
+alias dotfiles='${EDITOR} ~/Git/github.com/tadeasbronis/dotfiles'
 
 # Python
 alias python='python3.14'
