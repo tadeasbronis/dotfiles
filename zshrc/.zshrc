@@ -1,6 +1,8 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+
 # Disable Oh My Zsh theme (using Starship instead)
 ZSH_THEME=""
 
@@ -31,7 +33,6 @@ alias dotfiles='${EDITOR} ~/Git/github.com/tadeasbronis/dotfiles'
 # Python
 alias python='python3.14'
 
-export PATH="$HOME/.local/bin:$PATH"
 export XDG_CONFIG_HOME="$HOME/.config"
 
 # opencode completion
