@@ -13,7 +13,8 @@ vim.opt.list = true
 vim.opt.listchars = {
     tab = '→ ',
     trail = '·',
-    space = '·'
+    space = '·',
+    eol = '↲',
 }
 
 vim.opt.number = true
