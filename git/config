@@ -3,3 +3,22 @@ path = ~/.config/git/config-personal
 
 [includeIf "gitdir:~/Git/gitlab.group.team.blue/"]
 path = ~/.config/git/config-teamblue
+
+[branch]
+    autoSetupMerge = always
+
+[alias]
+    clone-worktree = "!f() { \
+        url=\"$1\"; \
+        name=$(basename \"$url\" .git); \
+        dest=$(cd \"${2:-.}\" 2>/dev/null && pwd || pwd)/\"$name\"; \
+        if [ -e \"$dest\" ]; then echo \"Error: '$dest' already exists\"; exit 1; fi; \
+        mkdir -p \"$dest\"; \
+        git clone --bare \"$url\" \"$dest/.bare\"; \
+        printf 'gitdir: ./.bare\\n' > \"$dest/.git\"; \
+        git -C \"$dest\" config remote.origin.fetch '+refs/heads/*:refs/remotes/origin/*'; \
+        git -C \"$dest\" fetch; \
+        branch=$(git -C \"$dest\" symbolic-ref --short HEAD); \
+        git -C \"$dest\" worktree add \"$dest/$branch\" \"$branch\"; \
+        echo \"Done: $dest/$branch\"; \
+    }; f"
