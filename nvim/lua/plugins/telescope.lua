@@ -13,8 +13,16 @@ return {{
                 path_display = { "truncate" },
             },
             pickers = {
-                find_files = { cwd_only = true },
-                live_grep  = { cwd_only = true },
+                find_files = {
+                    cwd_only = true,
+                    hidden = true,
+                    file_ignore_patterns = { "%.git/" },
+                },
+                live_grep  = {
+                    cwd_only = true,
+                    additional_args = function() return { "--hidden" } end,
+                    file_ignore_patterns = { "%.git/" },
+                },
             },
         })
         vim.keymap.set("n", "<leader>sf", builtin.find_files, {})
