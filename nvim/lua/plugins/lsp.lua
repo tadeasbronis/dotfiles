@@ -9,8 +9,8 @@ return {{
     config = function()
         require("mason-tool-installer").setup({
             ensure_installed = { -- LSP servers
-            "lua-language-server", "taplo", -- Formatters
-            "stylua", "prettier", "shfmt", -- Linters
+            "lua-language-server", "taplo", "bash-language-server", -- Formatters
+            "stylua", "prettier", "beautysh", -- Linters
             "salt-lint"}
         })
     end
@@ -23,13 +23,17 @@ return {{
     }, {"neovim/nvim-lspconfig"}},
     config = function()
         require("mason-lspconfig").setup({
-            ensure_installed = {"lua_ls", "taplo"}
+            ensure_installed = {"lua_ls", "taplo", "bashls"}
         })
 
         vim.lsp.config("lua_ls", {})
         vim.lsp.enable("lua_ls")
         vim.lsp.config("taplo", {})
         vim.lsp.enable("taplo")
+        vim.lsp.config("bashls", {
+            filetypes = {"sh", "zsh", "bash"}
+        })
+        vim.lsp.enable("bashls")
 
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -42,6 +46,21 @@ return {{
     "nvimtools/none-ls.nvim",
     config = function()
         local null_ls = require("null-ls")
+        local h = require("null-ls.helpers")
+        local methods = require("null-ls.methods")
+
+        local beautysh = h.make_builtin({
+            name = "beautysh",
+            method = methods.internal.FORMATTING,
+            filetypes = {"sh", "zsh", "bash"},
+            generator_opts = {
+                command = "beautysh",
+                args = {"-"},
+                to_stdin = true,
+            },
+            factory = h.formatter_factory,
+        })
+
         null_ls.setup({
             sources = {null_ls.builtins.formatting.stylua, null_ls.builtins.formatting.prettier.with({
                 filetypes = {"javascript", "typescript", "json", "yaml", "markdown", "salt"},
@@ -51,7 +70,7 @@ return {{
                     end
                     return {}
                 end,
-            }), null_ls.builtins.formatting.shfmt, null_ls.builtins.diagnostics.saltlint.with({
+            }), beautysh, null_ls.builtins.diagnostics.saltlint.with({
                 filetypes = {"salt", "yaml"}
             })}
         })
