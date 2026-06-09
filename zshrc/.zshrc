@@ -42,5 +42,9 @@ source <(opencode completion)
 export STARSHIP_CONFIG="$HOME/.config/starship/starship.toml"
 eval "$(starship init zsh)"
 
+# GIT
+
+alias glr='tv git-repos'
+
 # Worktrunk
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
