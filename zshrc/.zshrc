@@ -19,7 +19,7 @@ FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
 # nvim
 export EDITOR="/opt/homebrew/bin/nvim"
-alias n="neovim"
+alias n="nvim"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -46,7 +46,7 @@ eval "$(starship init zsh)"
 
 # GIT
 
-alias glr='tv git-repos'
+alias glr="tv git-repos"
 
 # Worktrunk
 if command -v wt >/dev/null 2>&1; then eval "$(command wt config shell init zsh)"; fi
