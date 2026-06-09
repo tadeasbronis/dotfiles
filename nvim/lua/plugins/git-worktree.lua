@@ -44,7 +44,7 @@ return {
                             return
                         end
                         local path = hub .. "/" .. branch
-                        require("git-worktree").create_worktree(path, branch, "origin")
+                        require("git-worktree").create_worktree(path, branch, branch)
                     end)
                     return true
                 end
