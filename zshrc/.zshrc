@@ -17,7 +17,9 @@ plugins=(
 
 FPATH="$(brew --prefix)/share/zsh/site-functions:${FPATH}"
 
+# nvim
 export EDITOR="/opt/homebrew/bin/nvim"
+alias n="neovim"
 
 source $ZSH/oh-my-zsh.sh
 
