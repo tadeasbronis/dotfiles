@@ -1,7 +1,7 @@
 # Path to your Oh My Zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-export PATH="/opt/homebrew/bin:$HOME/.local/bin:$PATH"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:/opt/homebrew/bin:$HOME/.local/bin:$PATH"
 
 # Disable Oh My Zsh theme (using Starship instead)
 ZSH_THEME=""
