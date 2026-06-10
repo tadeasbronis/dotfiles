@@ -9,9 +9,9 @@ return {{
     config = function()
         require("mason-tool-installer").setup({
             ensure_installed = { -- LSP servers
-            "lua-language-server", "taplo", "bash-language-server", -- Formatters
+            "lua-language-server", "taplo", "bash-language-server", "terraform-ls", -- Formatters
             "stylua", "prettier", "beautysh", -- Linters
-            "salt-lint"}
+            "salt-lint", "tflint"}
         })
     end
 }, {
@@ -23,7 +23,7 @@ return {{
     }, {"neovim/nvim-lspconfig"}},
     config = function()
         require("mason-lspconfig").setup({
-            ensure_installed = {"lua_ls", "taplo", "bashls"}
+            ensure_installed = {"lua_ls", "taplo", "bashls", "terraformls"}
         })
 
         vim.lsp.config("lua_ls", {})
@@ -34,6 +34,10 @@ return {{
             filetypes = {"sh", "zsh", "bash"}
         })
         vim.lsp.enable("bashls")
+        vim.lsp.config("terraformls", {
+            filetypes = {"terraform", "terraform-vars"}
+        })
+        vim.lsp.enable("terraformls")
 
         vim.keymap.set("n", "K", vim.lsp.buf.hover, {})
         vim.keymap.set("n", "gd", vim.lsp.buf.definition, {})
@@ -72,7 +76,7 @@ return {{
                 end,
             }), beautysh, null_ls.builtins.diagnostics.saltlint.with({
                 filetypes = {"salt", "yaml"}
-            })}
+            }), null_ls.builtins.formatting.opentofu_fmt}
         })
 
         vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
