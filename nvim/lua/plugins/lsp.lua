@@ -79,6 +79,12 @@ return {{
             }), null_ls.builtins.formatting.opentofu_fmt}
         })
 
+        vim.api.nvim_create_autocmd("BufWritePre", {
+            callback = function()
+                vim.lsp.buf.format({timeout_ms = 3000})
+            end
+        })
+
         vim.keymap.set("n", "<leader>gf", vim.lsp.buf.format, {})
     end
 }}
