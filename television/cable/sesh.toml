@@ -10,10 +10,10 @@ requirements = ["sesh", "fd"]
 # Multiple source commands for cycling through different modes
 # Press Ctrl+S to cycle between sources
 command = [
-  { name = "All",         run = "sesh list --icons" },
-  { name = "Tmux",        run = "sesh list -t --icons" },
-  { name = "Configs",     run = "sesh list -c --icons" },
-  { name = "Zoxide",      run = "sesh list -z --icons" },
+  { name = "All", run = "sesh list --icons" },
+  { name = "Tmux", run = "sesh list -t --icons" },
+  { name = "Configs", run = "sesh list -c --icons" },
+  { name = "Zoxide", run = "sesh list -z --icons" },
   { name = "Directories", run = "fd -H -d 2 -t d -E .Trash . ~" },
 ]
 ansi = true
