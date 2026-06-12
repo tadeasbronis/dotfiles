@@ -31,7 +31,27 @@ return {{
             automatic_enable = false,
         })
 
-        vim.lsp.config("lua_ls", {})
+        vim.lsp.config("lua_ls", {
+            settings = {
+                Lua = {
+                    runtime = {
+                        -- Neovim uses LuaJIT
+                        version = "LuaJIT",
+                    },
+                    diagnostics = {
+                        -- Recognize the `vim` global injected by Neovim.
+                        globals = { "vim" },
+                    },
+                    workspace = {
+                        -- Make the LSP aware of Neovim runtime files so
+                        -- vim.api.*, vim.fn.*, etc. resolve correctly.
+                        library = vim.api.nvim_get_runtime_file("", true),
+                        checkThirdParty = false,
+                    },
+                    telemetry = { enable = false },
+                },
+            },
+        })
         vim.lsp.enable("lua_ls")
         vim.lsp.config("taplo", {})
         vim.lsp.enable("taplo")
