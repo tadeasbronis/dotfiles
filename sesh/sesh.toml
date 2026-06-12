@@ -1,0 +1,16 @@
+#:schema https://github.com/joshmedeski/sesh/raw/main/sesh.schema.json
+
+blacklist = ["scratch"]
+
+dir_length = 2 # Uses last 2 directories: "projects/sesh" instead of just "sesh"
+
+sort_order = ["config", "tmux"]
+
+[[session]]
+name = "dotfiles"
+path = "~/Git/github.com/tadeasbronis/dotfiles"
+startup_command = "nvim ."
+
+[[wildcard]]
+pattern = "~/Git/**"
+startup_command = "nvim ."
