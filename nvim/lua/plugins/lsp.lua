@@ -23,7 +23,12 @@ return {{
     }, {"neovim/nvim-lspconfig"}},
     config = function()
         require("mason-lspconfig").setup({
-            ensure_installed = {"lua_ls", "taplo", "bashls", "terraformls"}
+            ensure_installed = {"lua_ls", "taplo", "bashls", "terraformls"},
+            -- Disable automatic enabling of all installed LSP servers.
+            -- We enable them manually below so we can apply conditional
+            -- root_dir logic (e.g. terraformls only attaches to projects with
+            -- an initialized .terraform/ directory).
+            automatic_enable = false,
         })
 
         vim.lsp.config("lua_ls", {})
@@ -34,8 +39,33 @@ return {{
             filetypes = {"sh", "zsh", "bash"}
         })
         vim.lsp.enable("bashls")
+
+        -- terraformls: only attach when the project has been initialized
+        -- (i.e. a .terraform/ directory exists somewhere up the tree).
+        -- Without .terraform/, terraform-ls indexes every local module from
+        -- scratch and blocks the main thread, freezing nvim on large
+        -- monorepos. Run `terraform init` (or `tofu init`) in the project to
+        -- enable the LSP there.
+        local function terraform_root(bufnr)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            if fname == "" then return nil end
+            local found = vim.fs.find(".terraform", {
+                upward = true,
+                path = vim.fs.dirname(fname),
+                type = "directory",
+            })
+            if #found == 0 then return nil end
+            return vim.fs.dirname(found[1])
+        end
+
         vim.lsp.config("terraformls", {
-            filetypes = {"terraform", "terraform-vars"}
+            filetypes = {"terraform", "terraform-vars"},
+            root_dir = function(bufnr, on_dir)
+                local root = terraform_root(bufnr)
+                if root then on_dir(root) end
+                -- If no .terraform/ found, on_dir is never called, so
+                -- nvim won't start the LSP for this buffer.
+            end,
         })
         vim.lsp.enable("terraformls")
 
