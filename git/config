@@ -5,7 +5,11 @@ path = ~/.config/git/config-personal
 path = ~/.config/git/config-teamblue
 
 [branch]
-    autoSetupMerge = always
+autoSetupMerge = simple
+
+[push]
+default = simple
+autoSetupRemote = true
 
 [alias]
     clone-worktree = "!f() { \
