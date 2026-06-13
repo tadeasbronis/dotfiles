@@ -7,6 +7,10 @@ dir_length = 2 # Uses last 2 directories: "projects/sesh" instead of just "sesh"
 sort_order = ["config", "tmux"]
 
 [[session]]
+name = "home"
+path = "~"
+
+[[session]]
 name = "dotfiles"
 path = "~/Git/github.com/tadeasbronis/dotfiles"
 startup_command = "nvim ."
